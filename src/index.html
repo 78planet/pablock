@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <title>Klaytn Addition Game</title>
+  <script type="text/javascript" src="jquery-3.4.1.min.js" ></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <script src="index.js"></script>
+  <script type="text/javascript" language="javascript" src="sha256.min.js"></script>
+  <script type="text/javascript" src="ajax-cross-origin/js/jquery.ajax-cross-origin.min.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <script>
+          var c_code;
+	    		var start_period;
+	    		var end_period;
+	    		var c_date;
+	    		var c_id;
+	    		var p_id;
+	    		var work_place_name;
+	    		var email_check;
+	    		var hour_wage;
+	    		var dedicated_work;
+	    		var work_place;
+	    		var work_detail;
+	    		var start_work_time;
+	    		var end_work_time;
+	    		var additional_wage;
+	    		var payday;
+	    		var b_number;
+	    		var b_name;
+	    		var c_address;
+	    		var work_place_phone;
+	    		var p_name;
+	    		var p_phone;
+          var p_address;
+          var em_code;
+          var m_code, join_date, end_date, work_place;
+
+
+      function getUrlParams() {
+        var params = {};
+        window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
+        return params;
+      } 
+
+ 
+          params = getUrlParams();
+
+           c_code = params.c_code;
+	    		 start_period = params.start_period;
+	    		 end_period = params.end_period;
+	    		 c_date = params.c_date;
+	    		 c_id = params.c_id;
+	    		 p_id = params.p_id;
+	    		 work_place_name = params.work_place_name;
+	    		 email_check = params.email_check;
+	    		 hour_wage = params.hour_wage;
+	    		 dedicated_work = params.dedicated_work;
+	    		 work_place = params.work_place;
+	    		 work_detail = params.work_detail;
+	    		 start_work_time = params.start_work_time;
+	    		 end_work_time = params.end_work_time;
+	    		 additional_wage = params.additional_wage;
+	    		 payday = params.payday;
+	    		 b_number = params.b_number;
+	    		 b_name = params.b_name;
+	    		 c_address = params.c_address;
+	    		 work_place_phone = params.work_place_phone;
+	    		 p_name = params.p_name;
+	    		 p_phone = params.p_phone;
+           p_address = params.p_address;
+
+           em_code = params.em_code;
+            m_code = params.m_code;
+            join_date = params.join_date;
+            end_date = params.end_date;
+            work_place = params.work_place;
+
+        console.log("career. js : "+em_code);
+  
+        // console.log(c_code);
+        // console.log(start_period);
+        // console.log(end_period);
+        // console.log(c_date);
+        // console.log(c_id);
+        // console.log(p_id);
+        // console.log(work_place_name);
+        // console.log(email_check);
+        // console.log(hour_wage);
+        // console.log(dedicated_work);
+        // console.log(work_place);
+        // console.log(work_detail);
+        // console.log(start_work_time);
+        // console.log(end_work_time);
+        // console.log(additional_wage);
+        // console.log(payday);
+        // console.log(b_number);
+        // console.log(b_name);
+        // console.log(c_address);
+        // console.log(work_place_phone);
+        // console.log(p_name);
+        // console.log(p_phone);
+        // console.log(p_address);
+
+      var contStr =   c_code + start_period + end_period + c_date + c_id + p_id + work_place_name + email_check + hour_wage + dedicated_work + work_place
+                      + work_detail + start_work_time + end_work_time + additional_wage + payday + b_number + b_name + c_address + work_place_phone + p_name + p_phone + p_address;
+      var decontStr = decodeURI(contStr);
+
+      var careerStr = em_code, m_code, join_date, end_date, work_place;
+      var decareerStr = decodeURI(careerStr);
+
+      var hashContinfo = sha256(decontStr);
+      var hashCareinfo = sha256(decareerStr);
+
+      console.log(decontStr);        
+    $(function(){
+      $("#cross").click(function(){
+
+        // $.ajax({
+        //     crossOrigin : true,
+        //     dataType : "json",
+        //     url : "http://39.127.7.53:8080/onetest/cross2",
+        //     complete : function(data) {
+        //         var a = JSON.stringify(data.responseJSON);
+        //         var pars = JSON.parse(a);
+        //         console.log(pars.name);
+        //         console.log("dd");
+        //     },
+        //     error : function(err){ console.log(err.message); }
+        // });
+
+        var url = "http://39.127.7.53:8080/onetest/cross2";
+        // $.ajaxSetup({
+        //   crossOrigin: true,
+        //   proxy: url
+        // });
+
+        $.getJSON("http://39.127.7.53:8080/onetest/cross2?id=idid", function(data) {
+  
+          console.log("cross!!");
+          console.log(data);
+        });
+
+      });
+      
+    });
+
+    function noRefresh(){
+    /* CTRL + N키 막음. */
+    if ((event.keyCode == 78) && (event.ctrlKey == true))
+    {
+        event.keyCode = 0;
+        return false;
+    }
+    /* F5 번키 막음. */
+    if(event.keyCode == 116)
+    {
+        event.keyCode = 0;
+        return false;
+    }
+  }
+
+document.onkeydown = noRefresh ;
+  </script>
+</head>
+
+<body>
+  <div>
+    <div id="bloNotice" style="display:none"><h1>블록체인에 데이터 저장 중....</h1></div>
+    <div id="spin"></div>
+    <button type="button" style="display:none" id="txbut">트랜잭션id 확인 </button>
+    
+    <!-- <button type="button"  onclick="App.sendData()">data보내기 </button> -->
+    <!-- <button type="button"  onclick="App.readData()">내 계약서 정보 보기  </button> -->
+  </div>
+  <div id="transaction"></div>
+
+  <div id="myContInfo" style="display: none;"> 
+     <h3>내 계약서 정보~</h3>
+    <table border="2px">
+      <tr class="cmain">
+          <td>계약서항목</td>   
+          <td id="c0">계약서정보</td> 
+      </tr>
+    </table>
+  </div>
+</body>
+
+</html>
+
+
+<style>
+    body{
+      /* background-image: url("https://steamuserimages-a.akamaihd.net/ugc/858360322682622644/F13B848F3B43B3DE495C182C13E016D6025BB956/"); */
+      /* background-color: #aaaaaa; */
+      background-size: cover;
+      background-repeat:no-repeat;
+      /* opacity: 0.5; */
+    }
+
+    #bloNotice, #myContInfo,#transaction { position: absolute; left: 50%; transform: translateX(-50%); } 
+
+    #bloNotice{
+      color: red;
+    }
+
+    .yellow-box {   
+      background-color: #FFC;
+      padding: 2rem;
+      margin: 0 auto;
+      max-width: 500px;
+      font-size: 80px;
+    }
+  
+    #timer {
+      font-size: 80px;
+      color: red;
+    }
+  
+    @keyframes spinner-line-fade-more {
+      0%, 100% {
+        opacity: 0;
+      }
+      1% {
+        opacity: 1;
+      }
+    }
+  
+    @keyframes spinner-line-fade-quick {
+      0%, 39%, 100% {
+        opacity: 0.25;
+      }
+      40% {
+        opacity: 1;
+      }
+    }
+  
+    @keyframes spinner-line-fade-default {
+      0%, 100% {
+        opacity: 0.22;
+      }
+      1% {
+        opacity: 1;
+      }
+    }
+    .green {
+    color: #e8f0de;
+    border: solid 1px #538312;
+    background: #64991e;
+    background: -webkit-gradient(linear, left top, left bottom, from(#7db72f), to(#4e7d0e));
+    background: -moz-linear-gradient(top, #7db72f, #4e7d0e);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7db72f', endColorstr='#4e7d0e');
+}
+.button {
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    vertical-align: baseline;
+    margin: 0 2px;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font: 14px/100% Arial, Helvetica, sans-serif;
+    padding: .5em 2em .55em;
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    border-radius: .5em;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+  </style>

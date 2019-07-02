@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="career.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <title>Document</title>
+    <script>
+	    var em_code, m_code, join_date, end_date, work_place;
+
+
+
+    function getUrlParams() {
+      var params = {};
+      window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
+      return params;
+    } 
+        params = getUrlParams();
+
+        em_code = params.em_code;
+	    m_code = params.m_code;
+	    join_date = params.join_date;
+	    end_date = params.end_date;
+	    work_place = params.work_place;
+
+        console.log("career. js : "+work_place);
+  
+
+      
+    
+
+      
+  $(function(){
+
+    
+  });
+
+</script>
+
+</head>
+<body>
+    <h1>career</h1>
+    <div id="spin"></div>
+    <div id="transaction"></div>
+
+    <div id="bloNotice" style="display:none"><h1>블록체인에 데이터 저장 중....</h1></div>
+
+    <div id="myContInfo" style="display: none;"> 
+        <h3>내 계약서 정보~</h3>
+       <table border="1px">
+         <tr class="camain">
+             <td>계약서항목</td>   
+             <td id="c0">계약서정보</td> 
+         </tr>
+       </table>
+     </div>
+</body>
+</html>

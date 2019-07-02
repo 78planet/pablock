@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <title>Klaytn Addition Game</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <script src="index.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script type="text/javascript" src="ajax-cross-origin/js/jquery.ajax-cross-origin.min.js"></script>
+
+  <script>
+          var c_code;
+	    		var start_period;
+	    		var end_period;
+	    		var c_date;
+	    		var c_id;
+	    		var p_id;
+	    		var work_place_name;
+	    		var email_check;
+	    		var hour_wage;
+	    		var dedicated_work;
+	    		var work_place;
+	    		var work_detail;
+	    		var start_work_time;
+	    		var end_work_time;
+	    		var additional_wage;
+	    		var payday;
+	    		var b_number;
+	    		var b_name;
+	    		var c_address;
+	    		var work_place_phone;
+	    		var p_name;
+	    		var p_phone;
+          var p_address;
+        
+    $(function(){
+
+      $("#cross").click(function(){
+        $.ajax({
+            crossOrigin : true,
+            dataType : "json",
+            url : "http://localhost:8080/cross",
+            complete : function(data) {
+                var a = JSON.stringify(data.responseJSON);
+                var pars = JSON.parse(a);
+                console.log(pars.name);
+                console.log("dd");
+            }
+        });
+      });
+
+      function getUrlParams() {
+        var params = {};
+        window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
+        return params;
+      } 
+
+      window.onload = function(){
+          params = getUrlParams();
+
+           c_code = params.c_code;
+	    		 start_period = params.start_period;
+	    		 end_period = params.end_period;
+	    		 c_date = params.c_date;
+	    		 c_id = params.c_id;
+	    		 p_id = params.p_id;
+	    		 work_place_name = params.work_place_name;
+	    		 email_check = params.email_check;
+	    		 hour_wage = params.hour_wage;
+	    		 dedicated_work = params.dedicated_work;
+	    		 work_place = params.work_place;
+	    		 work_detail = params.work_detail;
+	    		 start_work_time = params.start_work_time;
+	    		 end_work_time = params.end_work_time;
+	    		 additional_wage = params.additional_wage;
+	    		 payday = params.payday;
+	    		 b_number = params.b_number;
+	    		 b_name = params.b_name;
+	    		 c_address = params.c_address;
+	    		 work_place_phone = params.work_place_phone;
+	    		 p_name = params.p_name;
+	    		 p_phone = params.p_phone;
+	    		 p_address = params.p_address;
+
+        console.log(c_code);
+        console.log(start_period);
+        console.log(end_period);
+        console.log(c_date);
+        console.log(c_id);
+        console.log(p_id);
+        console.log(work_place_name);
+        console.log(email_check);
+        console.log(hour_wage);
+        console.log(dedicated_work);
+        console.log(work_place);
+        console.log(work_detail);
+        console.log(start_work_time);
+        console.log(end_work_time);
+        console.log(additional_wage);
+        console.log(payday);
+        console.log(b_number);
+        console.log(b_name);
+        console.log(c_address);
+        console.log(work_place_phone);
+        console.log(p_name);
+        console.log(p_phone);
+        console.log(p_address);
+
+      }
+
+    });
+  </script>
+</head>
+
+<body>
+  <div>
+    
+    <button type="button"  onclick="App.createAcc()">계정을 만들어 보자~ </button>
+    <button type="button"  onclick="App.sendData()">data보내기 </button>
+    <button type="button"  onclick="App.readData()">내 계약서 정보 보기  </button>
+  </div>
+  <button id="cross">CROSS</button>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1 class="text-center">클레이튼(Klaytn)</h1>
+        <h3 class="text-center">계약서 TEST</h3>
+        <h3 class="text-center">
+          <code>F i r s t  T e s t</code>
+          <button type="button"
+                  class="btn btn-info pull-right"
+                  id="login"
+                  data-toggle="modal"
+                  data-target="#loginModal">로그인
+           </button>
+          <button type="button"
+                  class="btn btn-info pull-right" 
+                  id="logout"
+                  style="display: none;"
+                  onclick="App.handleLogout()">로그아웃
+           </button>
+        </h3>
+        <div class="text-center" id="address"></div>
+        <div class="text-center" id="contractBalance"></div>
+
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row text-center">
+        <div class="col-md-2 col-md-offset-5">
+          <div id="owner" style="display: none">
+            <hr>
+            <label>나는 사장이다!!</label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="amount">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" onclick="App.showEmp()">직원들 이름 보기</button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row text-center">
+            <div class="col-md-2 col-md-offset-5">
+              <div id="employer" style="display: none">
+                <hr>
+                <label>나는 알바생이다!!!</label>
+                <div class="input-group">
+                    직원 이름 <input type="text"  id="empname">
+                    근무 장소 <input type="text"  id="workplace"><br>
+                    핸드폰 번호 <input type="tel" id="phnum">
+    
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" onclick="App.addContract()">계약서 작성</button>
+                    </span>
+                </div>
+                <div id="myinfo"  class="input-group">
+                    <input type="number" class="form-control" id="amount">
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" onclick="App.showEmp()">내 정보 확인</button>
+                    </span>
+                  </div>
+              </div>
+            </div>
+
+    <br>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="loginModal">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="keystore">Keystore</label>
+                <input type="file" id="keystore" onchange="App.handleImport()">
+              </div>
+              <div class="form-group">
+                  <label for="input-password">Keystore</label>
+                  <input type="password" class="form-control" id="input-password" onchange="App.handlePassword()">
+                  <p class="help-block" id="message"></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+              <button type="button" class="btn btn-primary" id="submit" onclick="App.handleLogin()">제출</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+</body>
+
+</html>
+
+
+<style>
+    .yellow-box {
+      background-color: #FFC;
+      padding: 2rem;
+      margin: 0 auto;
+      max-width: 500px;
+      font-size: 80px;
+    }
+  
+    #timer {
+      font-size: 80px;
+      color: red;
+    }
+  
+    @keyframes spinner-line-fade-more {
+      0%, 100% {
+        opacity: 0;
+      }
+      1% {
+        opacity: 1;
+      }
+    }
+  
+    @keyframes spinner-line-fade-quick {
+      0%, 39%, 100% {
+        opacity: 0.25;
+      }
+      40% {
+        opacity: 1;
+      }
+    }
+  
+    @keyframes spinner-line-fade-default {
+      0%, 100% {
+        opacity: 0.22;
+      }
+      1% {
+        opacity: 1;
+      }
+    }
+  </style>
